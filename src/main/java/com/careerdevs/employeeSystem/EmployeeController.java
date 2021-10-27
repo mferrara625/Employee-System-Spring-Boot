@@ -22,7 +22,7 @@ public class EmployeeController {
         for(Employee employee : employeeList){
             output += "<br>" + employee.getFirstName() + " " + employee.getLastName();
         }
-        return "Welcome To Employee System:" + output;
+        return "Welcome To Employee System: <br>" + output + "<br> <br> <a href=\"/dummyEmployee\">Dummy Employee</a> <br> <a href=\"/createEmployee\">Create Employee (Request Param)</a> <br> <a href=\"/employeeLastName/\">Employee Last Name (Path Variable)</a> <br> <a href=\"/returnHome/\">A Page That Links Back To This Page</a>";
     }
 
     @GetMapping("/dummyEmployee")
@@ -40,5 +40,10 @@ public class EmployeeController {
     @GetMapping("/employeeLastName/{lastName}")
     public Employee employeeLastName(@PathVariable String lastName){
         return new Employee(counter.incrementAndGet(), "Employee", lastName);
+    }
+
+    @GetMapping("/returnHome")
+    public String linkHome(){
+        return "<a href=\"/\">Homepage</a>";
     }
 }
