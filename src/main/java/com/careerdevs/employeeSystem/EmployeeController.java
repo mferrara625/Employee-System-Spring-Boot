@@ -14,15 +14,15 @@ import java.util.concurrent.atomic.AtomicLong;
 public class EmployeeController {
 
     private final AtomicLong counter = new AtomicLong();
-    private List<Employee> employeeList = new ArrayList<>();
+    private final List<Employee> employeeList = new ArrayList<>();
 
     @GetMapping("/")
     public String rootRoute(){
         String output = "";
         for(Employee employee : employeeList){
-            output += "\n" + employee.getFirstName() + " " + employee.getLastName() + ",";
+            output += "<br>" + employee.getFirstName() + " " + employee.getLastName();
         }
-        return "Welcome To Employee System:\n\n" + output;
+        return "Welcome To Employee System:" + output;
     }
 
     @GetMapping("/dummyEmployee")
