@@ -20,7 +20,8 @@ public class EmployeeController {
     public String rootRoute(){
         String output = "";
         for(Employee employee : employeeList){
-            output += "<br>" + employee.getFirstName() + " " + employee.getLastName();
+//            if(!employee.getLastName().equals("Employee"))       // removes all instances of "Valued Employee" from employee List
+            output += "<br> ID: " + employee.getId() + "  " + employee.getFirstName() + " " + employee.getLastName();
         }
         return "Welcome To Employee System: <br>" + output + "<br> <br> <a href=\"/dummyEmployee\">Dummy Employee</a> <br> <a href=\"/createEmployee\">Create Employee (Request Param)</a> <br> <a href=\"/employeeLastName/\">Employee Last Name (Path Variable)</a> <br> <a href=\"/returnHome/\">A Page That Links Back To This Page</a>";
     }
