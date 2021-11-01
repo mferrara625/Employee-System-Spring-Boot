@@ -2,6 +2,7 @@ package com.careerdevs.employeeSystem.cars;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,11 @@ public class CarController {
     private Map<Long, Car> carList = new HashMap<>();
     private AtomicLong idCounter = new AtomicLong();
 
+
+    public CarController(){
+        Long id = idCounter.incrementAndGet();
+        carList.put(id, new Car(id, "Ford", "Focus", 60));
+    }
 
     @GetMapping
     public List<Car> allCars(){
@@ -33,6 +39,21 @@ public class CarController {
     public Car getCar(@PathVariable Long id){
         return carList.get(id);
     }
+
+    @GetMapping("/create/{make}/{model}/{price}")
+    public Car createCar(@PathVariable String make, @PathVariable String model, @PathVariable Integer price){
+        Car createdCar = new Car(idCounter.incrementAndGet(), make, model, price);
+        carList.put(createdCar.getId(), createdCar);
+        return createdCar;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCar(@PathVariable Long id){
+        Car deletedCar = carList.get(id);
+        carList.remove(deletedCar.getId());
+        return deletedCar.getMake() + " " + deletedCar.getModel() + " Deleted!";
+    }
+
 
 
 }
