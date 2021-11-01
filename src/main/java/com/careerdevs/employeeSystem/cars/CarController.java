@@ -47,6 +47,19 @@ public class CarController {
         return createdCar;
     }
 
+    @GetMapping("/update/{id}")
+    public Car updateCar(@PathVariable Long id, @RequestParam(value = "make", defaultValue = "Make") String make, @RequestParam( value = "model", defaultValue = "Model") String model, @RequestParam(value = "price", defaultValue = "0") Integer price){
+        Car updatedCar = carList.get(id);
+        if(!make.equals("Make"))
+            updatedCar.setMake(make);
+        if(!model.equals("Model"))
+            updatedCar.setModel(model);
+        if(price != 0)
+            updatedCar.setPrice(price);
+        return updatedCar;
+    }
+
+
     @GetMapping("/delete/{id}")
     public String deleteCar(@PathVariable Long id){
         Car deletedCar = carList.get(id);

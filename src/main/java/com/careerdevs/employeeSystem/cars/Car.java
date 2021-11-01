@@ -67,7 +67,7 @@ public class Car {
                 "id=" + id +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", weight=" + price +
+                ", price=" + price +
                 '}';
     }
 }
